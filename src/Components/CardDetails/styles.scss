@@ -1,0 +1,56 @@
+@import "../../styles/colors.scss";
+
+.CardDetailForm {
+  position: fixed;
+  z-index: 99;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  background: transparent;
+  box-shadow: 0px 0px 0px 0px #000;
+  text-shadow: 2px 1px 4px #000;
+  background-color: #000000d8;
+  color: white;
+  .CloseButton {
+    font-size: 1vw;
+    font-style: bold;
+    color: white;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .CardDetails {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
+
+    .CardDetailsImage {
+      img {
+        background: transparent;
+        background-color: inherit;
+        //margin-left: 0.25vw;
+        margin-top: 0.75vw;
+        margin-bottom: 0.75vw;
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg)
+          scale3d(1, 1, 1);
+        filter: drop-shadow(rgba(0, 0, 0, 0.6) 0px 3px 3px);
+      }
+      img:hover {
+        cursor: pointer;
+        margin: 0.25vw;
+        border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+        transform: perspective(1000px) rotateX(17.5deg) rotateY(0deg)
+          scale3d(1.035, 1.035, 1.035);
+        filter: drop-shadow(rgba(192, 230, 25, 0.6) 0px 3px 3px);
+      }
+    }
+  }
+}
