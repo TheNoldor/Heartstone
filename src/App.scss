@@ -1,0 +1,16 @@
+@import "./styles/colors.scss";
+
+body {
+  display: flex;
+  width: 98vw;
+  // background-color: #665eb1;
+  background-color: $color-background;
+  justify-content: center;
+  .App {
+    display: flex;
+    margin-top: 3.8em;
+    justify-self: center;
+    width: 90vw;
+    align-self: center;
+  }
+}
