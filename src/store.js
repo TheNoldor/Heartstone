@@ -1,10 +1,10 @@
 import { createStore } from "redux";
-import cards from "./Components/cards.json"; // This is json file
+
+import cards from "./components/cards.json";
 
 function Cards(state = cards) {
-  // Clients is array data
   return state;
 }
 
-export const store = createStore(Cards); // This is reducers
+export const store = createStore(Cards);
 export default store;
