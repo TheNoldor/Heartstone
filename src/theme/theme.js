@@ -19,7 +19,6 @@ const theme = createTheme({
           overflow: "hidden",
 
           img: {
-            //borderRadius: "50%",
             width: "2vw",
             marginLeft: "-1vw",
             marginRight: "0.3vw",
