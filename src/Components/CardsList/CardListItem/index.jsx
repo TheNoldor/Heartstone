@@ -6,11 +6,11 @@ import CardDetails from "../../CardDetails";
 import styles from "./styles.module.scss";
 
 const CardItem = ({ card }) => {
-  const { avatar } = card.general;
+  const { img } = card;
 
   return (
     <div className={styles.card} onClick={() => CardDetails()}>
-      <img className="CardImg" alt="" src={avatar} />
+      <img className="CardImg" alt="" src={img} />
     </div>
   );
 };

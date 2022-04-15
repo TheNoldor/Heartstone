@@ -16,8 +16,8 @@ const App = () => (
     <div className={styles.App}>
       <CardsList />
       <Switch>
-        <Route exact path="/card/:id?">
-          <Route path="/card/:id" component={() => <CardDetails />} />
+        <Route exact path="/card/:cardId?">
+          <Route path="/card/:cardId" component={() => <CardDetails />} />
         </Route>
         <Redirect exact from="/" to="/card/" />
         <Route />

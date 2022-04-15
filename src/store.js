@@ -1,10 +1,6 @@
 import { createStore } from "redux";
 
-import cards from "./components/cards.json";
+import reposReducer from "./reducers/reposReducer";
 
-function Cards(state = cards) {
-  return state;
-}
-
-export const store = createStore(Cards);
+export const store = createStore(reposReducer);
 export default store;
