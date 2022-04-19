@@ -17,7 +17,6 @@ export const getCards = () => {
     axios
       .request(options)
       .then(function (cards) {
-        console.log(cards.data);
         dispatch(setRepos(cards.data));
       })
       .catch(function (error) {

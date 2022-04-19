@@ -5,20 +5,26 @@ import { NavLink } from "react-router-dom";
 import ButtonClass from "../Navbar/ButtonClasses";
 import ButtonCosts from "../Navbar/ButtonCosts";
 
-import cards from "../cards.json";
+import { useSelector } from "react-redux";
 
 import styles from "./styles.module.scss";
 import logo from "../../images/logo.png";
 
 const CardsList = () => {
+  const { cards } = useSelector((state) => state);
+
   const [value, setValue] = useState("");
-  const filteredcards = cards.filter(
-    (card) =>
-      card.name.toLowerCase().includes(value.toLowerCase()) &&
+
+  const filteredcards = cards.filter((card) => {
+    const keywords = `${card.name} ,${card.artist}, ${card.cost}`;
+
+    return (
+      keywords.toLowerCase().includes(value.toLowerCase()) &&
       card.hasOwnProperty("img") &&
       card.hasOwnProperty("cost") &&
       card.hasOwnProperty("text")
-  );
+    );
+  });
 
   return (
     <div className={styles.container}>

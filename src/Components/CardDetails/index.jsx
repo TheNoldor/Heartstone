@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { CARD_IMG_URL } from "../../constants/cards";
 
-import cards from "../cards.json";
-
 import styles from "./styles.module.scss";
 
 const CardDetails = () => {
+  const { cards } = useSelector((state) => state);
   const { cardId } = useParams();
   const [card, setCard] = useState(false);
 
   useEffect(() => {
     setCard(cards.find((item) => item.cardId === cardId));
-  }, [cardId]);
+  }, [cards, cardId]);
 
   return (
     <div className={styles.cardDetailForm}>

@@ -9,14 +9,17 @@ export default function reposReducer(state = defaultState, action) {
   switch (action.type) {
     case SET_REPOS:
       return {
-        cards: action.payload.cards,
+        ...state,
+        cards: action.payload,
+        loading: false,
+        error: null,
       };
     default:
       return state;
   }
 }
 
-export const setRepos = (repos) => ({
+export const setRepos = (cards) => ({
   type: SET_REPOS,
-  payload: Object.values(repos),
+  payload: Object.values(cards),
 });
