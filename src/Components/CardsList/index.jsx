@@ -35,8 +35,8 @@ const CardsList = () => {
               <img src={logo} alt="" loading="lazy" />
             </a>
           </div>
-          <ButtonClass className="buttons" />
-          <ButtonCosts className="buttons" />
+          <ButtonClass className={styles.buttons} />
+          <ButtonCosts className={styles.buttons} />
           <div className={styles.search}>
             <input
               type="text"

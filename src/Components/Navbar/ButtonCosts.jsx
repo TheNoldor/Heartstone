@@ -12,6 +12,8 @@ import {
   Popper,
 } from "@mui/material";
 
+import { MANA_COST_IMG_URL } from "../../constants/cards";
+
 const menuCosts = [
   {
     id: 1,
@@ -102,7 +104,7 @@ const ButtonCosts = () => {
             min-width="40lapx"
           >
             <Button className="button" onClick={handleClick}>
-              <img alt="title" src="https://u.to/zzEZHA" />
+              <img alt="title" src={MANA_COST_IMG_URL} />
               {menuCosts.find((item) => item.id === selectedIndex).title}
             </Button>
             <Button
@@ -145,7 +147,7 @@ const ButtonCosts = () => {
                           selected={id === selectedIndex}
                           onClick={(event) => handleMenuItemClick(event, id)}
                         >
-                          <img alt="title" src="https://u.to/zzEZHA" /> {title}
+                          <img alt="title" src={MANA_COST_IMG_URL} /> {title}
                         </MenuItem>
                       ))}
                     </MenuList>

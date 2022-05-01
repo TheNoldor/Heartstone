@@ -6,8 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getCards } from "./redux/actions/repos";
 
+import { getCards } from "./redux/actions/repos";
 import CardsList from "./components/CardsList";
 import CardDetails from "./components/CardDetails";
 
@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className={styles.App}>
+      <div className={styles.app}>
         <CardsList />
         <Switch>
           <Route exact path="/card/:cardId?">

@@ -1,16 +1,20 @@
 import axios from "axios";
 import { createStore } from "redux";
 
+import { BASE_URL } from "../../config";
+import { API_HOST } from "../../config";
+import { API_KEY } from "../../config";
+
 import { setRepos } from "../reducers/reposReducer";
 
 export const getCards = () => {
   return async (dispatch) => {
     const options = {
       method: "GET",
-      url: "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/classic",
+      url: BASE_URL,
       headers: {
-        "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-        "X-RapidAPI-Key": "7b2c1e2a16msh2fd7511ba8ce59ap154106jsn702f02457372",
+        "X-RapidAPI-Host": API_HOST,
+        "X-RapidAPI-Key": API_KEY,
       },
     };
 
@@ -22,6 +26,7 @@ export const getCards = () => {
       .catch(function (error) {
         console.error(error);
       });
+    console.log(`${options.url}`);
   };
 };
 
