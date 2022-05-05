@@ -1,6 +1,4 @@
-//import React, { Component }from "react";
-//import { Click } from "./Clientslistitem";
-//import { connect } from 'react-redux';
+import React from "react";
 import { ArrowDropDownCircleOutlined } from "@mui/icons-material";
 import {
   Button,
@@ -13,31 +11,58 @@ import {
   Paper,
   Popper,
 } from "@mui/material";
-import React from "react";
-// import Grid from "@material-ui/core/Grid";
-// import Button from "@material-ui/core/Button";
-// import ButtonGroup from "@material-ui/core/ButtonGroup";
-// import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-// import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-// import Grow from "@material-ui/core/Grow";
-// import Paper from "@material-ui/core/Paper";
-// import Popper from "@material-ui/core/Popper";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import MenuList from "@material-ui/core/MenuList";
 
-const options = [
-  "Любая стоимость",
-  "Мана:0",
-  "Мана:1",
-  "Мана:2",
-  "Мана:3",
-  "Мана:4",
-  "Мана:5",
-  "Мана:6",
-  "Мана:7",
-  "Мана:8",
-  "Мана:9",
-  "Мана:10+",
+import { MANA_COST_IMG_URL } from "../../constants/cards";
+
+const menuCosts = [
+  {
+    id: 1,
+    title: "Any cost",
+  },
+  {
+    id: 2,
+    title: "Mana:0",
+  },
+  {
+    id: 3,
+    title: "Mana:1",
+  },
+  {
+    id: 4,
+    title: "Mana:2",
+  },
+  {
+    id: 5,
+    title: "Mana:3",
+  },
+  {
+    id: 6,
+    title: "Mana:4",
+  },
+  {
+    id: 7,
+    title: "Mana:5",
+  },
+  {
+    id: 8,
+    title: "Mana:6",
+  },
+  {
+    id: 9,
+    title: "Mana:7",
+  },
+  {
+    id: 10,
+    title: "Mana:8",
+  },
+  {
+    id: 11,
+    title: "Mana:9",
+  },
+  {
+    id: 12,
+    title: "Mana:10+",
+  },
 ];
 
 const ButtonCosts = () => {
@@ -46,10 +71,10 @@ const ButtonCosts = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
+    console.info(`You clicked ${menuCosts[selectedIndex]}`);
   };
 
-  const handleMenuItemClick = (event, index) => {
+  const handleMenuItemClick = (index) => {
     setSelectedIndex(index);
     setOpen(false);
   };
@@ -67,18 +92,23 @@ const ButtonCosts = () => {
   };
 
   return (
-    <div className="Cost">
-      <Grid container direction="column" alignItems="center">
-        <Grid item xs={12}>
+    <div className="cost">
+      <Grid className="grid" container direction="column" alignItems="center">
+        <Grid className="grid" item xs={12}>
           <ButtonGroup
+            className="buttonGroup"
             variant="contained"
             color="secondary"
             ref={anchorRef}
             aria-label="split button"
-            min-width="40px"
+            min-width="40lapx"
           >
-            <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+            <Button className="button" onClick={handleClick}>
+              <img alt="title" src={MANA_COST_IMG_URL} />
+              {menuCosts.find((item) => item.id === selectedIndex).title}
+            </Button>
             <Button
+              className="button"
               color="primary"
               size="small"
               aria-controls={open ? "split-button-menu" : undefined}
@@ -91,6 +121,7 @@ const ButtonCosts = () => {
             </Button>
           </ButtonGroup>
           <Popper
+            className="popper"
             open={open}
             anchorEl={anchorRef.current}
             role={undefined}
@@ -99,26 +130,24 @@ const ButtonCosts = () => {
           >
             {({ TransitionProps, placement }) => (
               <Grow
+                className="grow"
                 {...TransitionProps}
                 style={{
                   transformOrigin:
                     placement === "bottom" ? "center top" : "center bottom",
                 }}
               >
-                <Paper>
+                <Paper className="paper">
                   <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList id="split-button-menu">
-                      {options.map((option, index) => (
+                    <MenuList className="menuList" id="split-button-menu">
+                      {menuCosts.map(({ id, title }) => (
                         <MenuItem
-                          key={option}
-                          selected={index === selectedIndex}
-                          onClick={(event) => handleMenuItemClick(event, index)}
+                          className="menuItem"
+                          key={id}
+                          selected={id === selectedIndex}
+                          onClick={(event) => handleMenuItemClick(event, id)}
                         >
-                          <img
-                            alt=""
-                            src="https://d2q63o9r0h0ohi.cloudfront.net/images/card-gallery/icon_mana-25ac7617a8c7f5f992660316dd307cf16b36001d1fa9693a5aca46eb01db420041018a1bbed19055f963b2421b7f615b887e84e1508be42c7b74138ee4794829.png"
-                          />{" "}
-                          {option}
+                          <img alt="title" src={MANA_COST_IMG_URL} /> {title}
                         </MenuItem>
                       ))}
                     </MenuList>

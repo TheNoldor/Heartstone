@@ -3,19 +3,18 @@
 .container {
   width: 90vw;
   outline: hidden;
+  align-self: center;
 
   .cardsList {
-    width: 82vw;
+    width: 87vw;
     filter: drop-shadow(#00000099 0px 3px 3px);
     transform: perspective(0px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
-    display: grid;
+    display: flex;
     flex-wrap: wrap;
     -webkit-box-pack: justify;
-    grid-template-columns: repeat(6, 12fr);
-    grid-gap: 0.5vw;
-    padding: 2vw;
-    margin: 2vw;
-    justify-content: space-between;
+    padding: 1vw;
+    margin: 10px;
+    justify-content: space-evenly;
     flex-direction: row;
     min-height: 12em;
     position: static;

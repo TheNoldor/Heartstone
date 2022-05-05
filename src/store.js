@@ -1,10 +1,8 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
 
-import cards from "./components/cards.json";
+import reposReducer from "./redux/reducers/reposReducer";
 
-function Cards(state = cards) {
-  return state;
-}
+const store = createStore(reposReducer, applyMiddleware(thunk));
 
-export const store = createStore(Cards);
 export default store;

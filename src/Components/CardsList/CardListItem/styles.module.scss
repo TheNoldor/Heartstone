@@ -4,11 +4,12 @@
   display: block;
 
   img {
+    position: relative;
     z-index: 2;
-    margin: 20px;
+    margin: 10px;
     background: transparent;
-    width: 12vw;
-    height: 15vw;
+    width: 240px;
+    height: 332px;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
 
     &:hover {

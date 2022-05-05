@@ -1,57 +1,58 @@
-//import React, { Component }from "react";
-//import { Click } from "./Clientslistitem";
-//import { connect } from 'react-redux';
 import React, { useState } from "react";
-import ListItem from "./Cardslistitem";
+import ListItem from "./CardListItem";
 import { NavLink } from "react-router-dom";
-//import Checkbox from "@material-ui/core/Checkbox"; //'@mui/material/Checkbox';
-//import AddAPhoto from "@material-ui/icons/AddAPhoto";
-import ButtonClass from "../Navbar/ButtonClasses";
 
-import cards from "../cards.json";
+import ButtonClass from "../Navbar/ButtonClasses";
 import ButtonCosts from "../Navbar/ButtonCosts";
 
+import { useSelector } from "react-redux";
+
+import styles from "./styles.module.scss";
+import logo from "../../images/logo.png";
+
 const CardsList = () => {
+  const { cards } = useSelector((state) => state);
+
   const [value, setValue] = useState("");
 
   const filteredcards = cards.filter((card) => {
+    const keywords = `${card.name} ,${card.artist}, ${card.cost}`;
+
     return (
-      card.general.firstName.toLowerCase().includes(value.toLowerCase()) ||
-      card.general.lastName.toLowerCase().includes(value.toLowerCase())
+      keywords.toLowerCase().includes(value.toLowerCase()) &&
+      card.hasOwnProperty("img") &&
+      card.hasOwnProperty("cost") &&
+      card.hasOwnProperty("text")
     );
   });
 
   return (
-    <div className="Container">
-      <div class="FilterWrapper">
-        <div className="SearchGroop">
-          <div className="Logo">
+    <div className={styles.container}>
+      <div className={styles.filterWrapper}>
+        <div className={styles.searchGroop}>
+          <div className={styles.logo}>
             <a href="/">
-              <img
-                src="https://d2vkoy1na2a6o6.cloudfront.net/images/logos/logo-rose-6ac85a09bf532a348c56002b9a9d7393d485677460a7d24c61be28bde93ecd11521a29ab5d1fed7b4646b6ec73c9dca1a85e8e82269e79f5a54ead2976682517.png"
-                alt=""
-                loading="lazy"
-              />
+              <img src={logo} alt="" loading="lazy" />
             </a>
           </div>
-          <ButtonClass />
-          <ButtonCosts />
-          <div className="Search">
+          <ButtonClass className={styles.buttons} />
+          <ButtonCosts className={styles.buttons} />
+          <div className={styles.search}>
             <input
               type="text"
               className="form-control"
-              placeholder="First or Last name..."
+              placeholder="Card name..."
               id="searchBar"
               onChange={(event) => setValue(event.target.value)}
             />
           </div>
         </div>
       </div>
-      <div className="CardsList">
-        {filteredcards.map((card, id) => {
+      <div className={styles.cardsList}>
+        {filteredcards.map((card) => {
           return (
-            <NavLink key={id} to={`/card/${id}`}>
-              <ListItem card={card} id={id} />
+            <NavLink key={card.cardId} to={`/card/${card.cardId}`}>
+              <ListItem card={card} id={card.cardId} />
             </NavLink>
           );
         })}

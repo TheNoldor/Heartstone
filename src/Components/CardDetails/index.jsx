@@ -1,88 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import cards from "../cards.json";
+import { CARD_IMG_URL } from "../../constants/cards";
+
+import styles from "./styles.module.scss";
 
 const CardDetails = () => {
-  const { id } = useParams();
-  const { heroClass } = "";
-  const [card, setCard] = useState(false);
+  const { cards } = useSelector((state) => state);
+  const { cardId } = useParams();
+  const [card, setCard] = useState([]);
 
   useEffect(() => {
-    setCard(cards.find((item) => item.id === id));
-    console.log("effect");
-  }, [id]);
-
-  if (!card) {
-    return <div>loading</div>;
-  }
+    setCard(cards.find((item) => item.cardId === cardId));
+  }, [cards, cardId]);
 
   return (
-    <div className="CardDetailForm">
-      <div tabindex="-1" className="{content}">
-        <div className="CloseButton">✕</div>
-        <div className="CardDetails">
-          <div className="CardDetailsImage">
-            <a
-              href="/card/"
-              className="CardLayout__CardWrap-sc-1eiryq6-0 WgEFw"
-            >
-              <div className="CardDetails__View" src={card.general.avatar}>
-                <img src={card.general.avatar} alt="Волна Бездны"></img>
+    <div className={styles.cardDetailForm}>
+      <NavLink to={"/"}>
+        <div className={styles.closeButton}> X </div>
+      </NavLink>
+      <div className={styles.cardDetails}>
+        <div className={styles.cardDetailsImage}>
+          <div className={styles.cardDetails_View} src={card.img}>
+            <div className={styles.flipCard}>
+              <div className={styles.flipCardInner}>
+                <div className={styles.flipCardFront}>
+                  <img src={card.img} alt="Card Name"></img>
+                </div>
+                <div className={styles.flipCardBack}>
+                  <img img src={CARD_IMG_URL} alt="Avatar" />
+                </div>
               </div>
-            </a>
+            </div>
           </div>
-          <div className="CardDetailsInfo">
-            <h3>Волна Бездны</h3>
-            <p>Глубокие соболезнования всем жертвам.</p>
-            <p>
-              Наносит 4 ед. урона всем существам. Противник получает проклятие
-              глубин.
-            </p>
-            <ul className="CardDetailsList">
-              <li>
-                Тип<span className="locale-space">&nbsp;</span>:
-                <span className="value">Заклинание</span>
-              </li>
-              <li>
-                Школа заклинаний<span className="locale-space">&nbsp;</span>:
-                <span className="value">Тьма</span>
-              </li>
-              <li>
-                Редкость<span className="locale-space">&nbsp;</span>:
-                <span className="value">Эпическая</span>
-              </li>
-              <li>
-                Набор<span className="locale-space">&nbsp;</span>:
-                <span className="value">Путешествие в Затонувший город</span>
-              </li>
-              <li>
-                Класс<span className="locale-space">&nbsp;</span>:
-                <span className="value">
-                  <a href={"/heroes/" + heroClass}>Чернокнижник</a>
-                </span>
-              </li>
-              <li>
-                Стоимость изготовления
-                <span className="locale-space">&nbsp;</span>:
-                <span className="value">400 / 1600 (Золотые)</span>
-              </li>
-              <li>
-                Кол-во пыли при распылении
-                <span className="locale-space">&nbsp;</span>:
-                <span className="value">100 / 400 (Золотые)</span>
-              </li>
-              <li>
-                Художник<span className="locale-space">&nbsp;</span>:
-                <span className="value">L. Lullabi &amp; K. Turovec</span>
-              </li>
-              <li>Коллекционная</li>
-            </ul>
-            <p className="CardLinks">
-              Связанные карты<span className="locale-space">&nbsp;</span>:
-            </p>
-            Проклятие глубин
-          </div>
+        </div>
+        <div className={styles.cardDetailsInfo}>
+          <h3>{card.name}</h3>
+          <p>{card.flavor}</p>
+          <ul className={styles.cardDetailsList}>
+            <li>
+              <span className="localeSpace">Type: </span>:
+              <span className="value">{card.type}</span>
+            </li>
+            <li>
+              <span className="localeSpace">Rarity: </span>:
+              <span className="value">{card.rarity}</span>
+            </li>
+            <li>
+              <span className="localeSpace">Set: </span>:
+              <span className="value">{card.cardSet}</span>
+            </li>
+            <li>
+              <span className="localeSpace">Class: </span>:
+              <span className="value">
+                <a href={"/heroes/" + card.playerClass}>{card.playerClass}</a>
+              </span>
+            </li>
+            <li>
+              <span className="localeSpace">Cost to Craft: </span>:
+              <span className="value">{card.cost}</span>
+            </li>
+            <li>
+              <span className="localeSpace">Disenchanting Yield: </span>:
+              <span className="value">100 / 400 (Золотые)</span>
+            </li>
+            <li>
+              <span className="localeSpace">Artist: </span>:
+              <span className="value">{card.artist}</span>
+            </li>
+            <li>
+              <span className="localeSpace">Collectible: </span>:
+              <span className="value">{card.collectible}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
