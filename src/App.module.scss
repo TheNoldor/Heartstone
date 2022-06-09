@@ -1,0 +1,23 @@
+@import "./styles/colors.scss";
+
+body {
+  display: flex;
+  width: 98vw;
+  background: rgb(230, 216, 181);
+  background: linear-gradient(
+    197deg,
+    rgba(230, 216, 181, 1) 0%,
+    rgba(231, 214, 172, 1) 19%,
+    rgba(210, 189, 139, 1) 75%,
+    rgba(205, 182, 122, 1) 100%
+  );
+  justify-content: center;
+
+  .app {
+    display: flex;
+    margin-top: 3.8em;
+    justify-self: center;
+    width: 90vw;
+    align-self: center;
+  }
+}
