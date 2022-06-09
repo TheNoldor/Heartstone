@@ -1,0 +1,121 @@
+@import "../../styles/colors.scss";
+
+.cardDetailForm {
+  position: fixed;
+  z-index: 99;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  background: transparent;
+  box-shadow: 0px 0px 0px 0px #000;
+  text-shadow: 2px 1px 4px #000;
+  background-color: #000000d8;
+  color: #ffffff;
+
+  .closeButton,
+  .closeButton:hover {
+    font-size: 2vw;
+    font-style: bold;
+    color: #ffffff;
+    position: absolute;
+    text-decoration: none;
+    width: auto;
+    margin-top: 1em;
+    margin-left: 1em;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0 0.5vw;
+    border: solid #ffffff 2px;
+    border-radius: 50%;
+    color: #ffffff;
+  }
+
+  .cardDetails {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 5vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .flipCard {
+      background-color: transparent;
+      width: 400px;
+      height: 600px;
+      perspective: 1000px;
+    }
+
+    .flipCardInner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 6s;
+      transform-style: preserve-3d;
+    }
+
+    .cardDetailsImage {
+      .flipCardFront {
+        width: 400px;
+        height: 600px;
+        background-image: url(https://images.blz-contentstack.com/v3/assets/bltc965041283bac56c/blt7052603b034d2fab/620d451c9485354f9b4607e6/23.0_cardback.webp);
+        background-size: cover;
+
+        img {
+          position: absolute;
+          left: 30px;
+          bottom: 20px;
+          width: 380px;
+          height: 570px;
+          background-color: inherit;
+          margin-top: 0.75vw;
+          margin-bottom: 0.75vw;
+          transform: perspective(1000px) rotateX(0deg) rotateY(0deg)
+            scale3d(1, 1, 1);
+          filter: drop-shadow(#00000099 0px 3px 3px);
+        }
+      }
+
+      .flipCardBack {
+        img {
+          //margin-top: 45px;
+          width: 400px;
+          height: 600px;
+          transform: perspective(1000px) rotateX(0deg) rotateY(0deg)
+            scale3d(1, 1, 1);
+          filter: drop-shadow(#00000099 0px 3px 3px);
+        }
+        background-color: transparent;
+        color: white;
+        transform: rotateY(180deg);
+      }
+
+      .flipCardFront,
+      .flipCardBack {
+        img:hover {
+          cursor: pointer;
+          border-radius: 0.5vw 0.5vw 0.5vw 0.5vw;
+        }
+
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        background-color: transparent;
+      }
+
+      .flipCard:hover .flipCardInner {
+        transform: rotateY(360deg);
+      }
+    }
+  }
+  .cardDetailsInfo {
+    ul {
+      position: relative;
+    }
+  }
+}
